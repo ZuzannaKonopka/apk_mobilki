@@ -5,10 +5,10 @@ options:
     iOS: "17.0"
 targets:
   PhotoLexicon:
+    scheme: {}
     type: application
     platform: iOS
     sources: [PhotoLexicon]
-    scheme:{}
     settings:
       base:
         SWIFT_VERSION: "6.0"
