@@ -8,6 +8,7 @@ targets:
     type: application
     platform: iOS
     sources: [PhotoLexicon]
+    scheme:{}
     settings:
       base:
         SWIFT_VERSION: "6.0"
