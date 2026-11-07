@@ -17,3 +17,13 @@ struct RootView: View {
         }
     }
 }
+
+#Preview("Cała aplikacja") {
+    RootView(analysis: AnalysisModel(), settings: AppSettings())
+}
+
+#Preview("Aplikacja z wynikami") {
+    RootView(
+        analysis: .preview(state: .completed, finished: ClassifierID.allCases),
+        settings: AppSettings())
+}

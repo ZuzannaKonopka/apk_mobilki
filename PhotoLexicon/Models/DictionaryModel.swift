@@ -114,3 +114,22 @@ final class DictionaryModel {
         generation += 1
     }
 }
+
+extension DictionaryModel {
+    static func preview(state: DictionaryState, word: String? = "cat") -> DictionaryModel {
+        let model = DictionaryModel(settings: AppSettings())
+        model.state = state
+        model.currentWord = word
+        model.query = word ?? ""
+        return model
+    }
+}
+
+extension LookupResult {
+    static let previewLong = LookupResult(
+        word: "cat",
+        definition: String(repeating: "A small domesticated carnivorous mammal with soft fur, a short snout, and retractable claws. ", count: 12),
+        byteCount: 12_345,
+        fetchedAt: .now
+    )
+}

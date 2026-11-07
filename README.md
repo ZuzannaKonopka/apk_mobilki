@@ -13,8 +13,7 @@ Aplikacja wczytuje zdjęcie, pokazuje wyniki trzech klasyfikatorów (w bloku 1 a
 
 1. Sklonuj repozytorium i wybierz tag `blok-1`.
 2. Otwórz `PhotoLexicon.xcodeproj`.
-3. (Opcjonalnie) w `PhotoLexicon/App/AppConfig.swift` ustaw `practiceServerAddress` na adres HTTPS od prowadzącego.
-4. Wybierz symulator iPhone i uruchom (⌘R). Zdjęcia do testów przeciągnij do aplikacji Zdjęcia w symulatorze.
+3. Wybierz symulator iPhone i uruchom (⌘R). Zdjęcia do testów przeciągnij do aplikacji Zdjęcia w symulatorze.
 
 ## Struktura
 

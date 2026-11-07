@@ -100,3 +100,33 @@ struct PhotoView: View {
         }
     }
 }
+
+#Preview("Brak zdjęcia") {
+    PhotoView(analysis: AnalysisModel())
+}
+
+#Preview("Wczytywanie") {
+    PhotoView(analysis: .preview(state: .loadingImage, withImage: false))
+}
+
+#Preview("Gotowe do analizy") {
+    PhotoView(analysis: .preview(state: .ready))
+}
+
+#Preview("Analiza – model własny") {
+    PhotoView(analysis: .preview(state: .running(.custom), finished: [.readyMade]))
+}
+
+#Preview("Zakończona") {
+    PhotoView(analysis: .preview(state: .completed, finished: ClassifierID.allCases))
+}
+
+#Preview("Anulowana") {
+    PhotoView(analysis: .preview(state: .cancelled))
+}
+
+#Preview("Błąd wczytania") {
+    PhotoView(analysis: .preview(
+        state: .failed("Nie udało się wczytać zdjęcia. Wybierz inny plik."),
+        withImage: false))
+}

@@ -99,3 +99,53 @@ struct DictionaryView: View {
         .frame(maxWidth: .infinity)
     }
 }
+
+#Preview("Przed wyszukaniem") {
+    NavigationStack { DictionaryView(model: .preview(state: .idle, word: nil)) }
+}
+
+#Preview("Pobieranie") {
+    NavigationStack { DictionaryView(model: .preview(state: .loading("cat"))) }
+}
+
+#Preview("Sukces – długa definicja") {
+    NavigationStack { DictionaryView(model: .preview(state: .loaded(.previewLong))) }
+}
+
+#Preview("Brak definicji") {
+    NavigationStack { DictionaryView(model: .preview(state: .empty("cat"))) }
+}
+
+#Preview("Błąd HTTP 500") {
+    NavigationStack {
+        DictionaryView(model: .preview(state: .failed(DictionaryError.httpStatus(500).message)))
+    }
+}
+
+#Preview("Niepoprawny JSON") {
+    NavigationStack {
+        DictionaryView(model: .preview(state: .failed(DictionaryError.invalidData.message)))
+    }
+}
+
+#Preview("Timeout") {
+    NavigationStack {
+        DictionaryView(model: .preview(state: .failed(DictionaryError.timedOut.message)))
+    }
+}
+
+#Preview("Brak połączenia") {
+    NavigationStack {
+        DictionaryView(model: .preview(state: .failed(DictionaryError.connection("offline").message)))
+    }
+}
+
+#Preview("Anulowano") {
+    NavigationStack { DictionaryView(model: .preview(state: .cancelled)) }
+}
+
+#Preview("Na żywo – prawdziwe API") {
+    let model = DictionaryModel(settings: AppSettings())
+    model.open(word: "cat")
+    return NavigationStack { DictionaryView(model: model) }
+}

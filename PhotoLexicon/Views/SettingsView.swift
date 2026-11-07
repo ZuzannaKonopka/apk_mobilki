@@ -46,3 +46,14 @@ struct SettingsView: View {
         }
     }
 }
+
+#Preview("Słownik online") {
+    SettingsView(settings: AppSettings())
+}
+
+#Preview("Serwer ćwiczeniowy") {
+    let settings = AppSettings()
+    settings.source = .practice
+    settings.scenario = .slow
+    return SettingsView(settings: settings)
+}

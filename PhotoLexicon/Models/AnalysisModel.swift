@@ -153,3 +153,36 @@ final class AnalysisModel {
         state = .idle
     }
 }
+
+extension AnalysisModel {
+    static func preview(
+        state: AnalysisState,
+        withImage: Bool = true,
+        finished: [ClassifierID] = []
+    ) -> AnalysisModel {
+        let model = AnalysisModel()
+        model.state = state
+        if withImage {
+            model.imageData = Data([0])
+            model.previewImage = UIImage(systemName: "cat.fill")
+        }
+        for id in finished {
+            model.results[id] = sampleResults(for: id)
+        }
+        return model
+    }
+
+    static func sampleResults(for id: ClassifierID) -> [RecognitionResult] {
+        switch id {
+        case .readyMade:
+            [RecognitionResult(label: "cat", confidence: 0.85),
+             RecognitionResult(label: "dog", confidence: 0.10)]
+        case .custom:
+            [RecognitionResult(label: "forest", confidence: 0.75),
+             RecognitionResult(label: "mountain", confidence: 0.20)]
+        case .converted:
+            [RecognitionResult(label: "bird", confidence: 0.70),
+             RecognitionResult(label: "cat", confidence: 0.25)]
+        }
+    }
+}

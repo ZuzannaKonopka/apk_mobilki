@@ -93,3 +93,23 @@ struct ResultsView: View {
         }
     }
 }
+
+#Preview("Brak wyników") {
+    ResultsView(analysis: AnalysisModel(), settings: AppSettings())
+}
+
+#Preview("W trakcie") {
+    ResultsView(
+        analysis: .preview(state: .running(.custom), finished: [.readyMade]),
+        settings: AppSettings())
+}
+
+#Preview("Zakończona") {
+    ResultsView(
+        analysis: .preview(state: .completed, finished: ClassifierID.allCases),
+        settings: AppSettings())
+}
+
+#Preview("Anulowana") {
+    ResultsView(analysis: .preview(state: .cancelled), settings: AppSettings())
+}
